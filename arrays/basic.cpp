@@ -151,6 +151,111 @@ void insertionSort() {
     cout<<endl;
 }
 
+void reverseArray() {
+    int n, x;
+    cout<<"Enter the size of the array: "<<endl;
+    cin>>n;
+    vector<int> a;
+    cout<<"Enter the elements of the array: "<<endl;
+    for(int i = 0; i < n; i++) {
+        cin>>x;
+        a.push_back(x);
+    }
+
+    for(int i = 0; i < n/2; i++) {
+        swap(a[i], a[n - 1 - i]);
+    }
+
+    cout<<"The reversed array is as follows: "<<endl;
+    for(int i = 0; i < n; i++)
+        cout<<a[i]<<" ";
+    cout<<endl;
+}
+
+void tripletSumToX() {
+    int n, x;
+    cout<<"Enter the size of the array: "<<endl;
+    cin>>n;
+    vector<int> a;
+    cout<<"Enter the elements of the array: "<<endl;
+    for(int i = 0; i < n; i++) {
+        cin>>x;
+        a.push_back(x);
+    }
+    cout<<"Enter the target sum: "<<endl;
+    cin>>x;
+
+    cout<<"The triplets are as follows: "<<endl;
+    for(int i = 0; i < n - 2; i++) {
+        int low = i + 1, high = n - 1;
+        while(low < high) {
+            int sum = a[low] + a[high] + a[i];
+            if(sum == x) {
+                cout<<a[i]<<" "<<a[low]<<" "<<a[high]<<endl;
+                low++;
+                high--;
+            }
+            else if(sum < x) 
+                low++;
+            else
+                high--;
+        }
+    }
+
+}
+
+void arrayDuplicate() {    
+    int n, x;
+    cout<<"Enter the size of the array: "<<endl;
+    cin>>n;
+    vector<int> a;
+    cout<<"Enter the elements of the array: "<<endl;
+    for(int i = 0; i < n; i++) {
+        cin>>x;
+        a.push_back(x);
+    }
+
+    x = 0;
+
+    for(int i = 0; i < n; i++)
+        x = x ^ a[i];
+    
+    cout<<"The duplicate number is: "<<x<<endl;
+}
+
+void sortBinaryArray() {
+    int n, x;
+    cout<<"Enter the size of the array: "<<endl;
+    cin>>n;
+    vector<int> a;
+    cout<<"Enter the elements of the array: "<<endl;
+    for(int i = 0; i < n; i++) {
+        cin>>x;
+        a.push_back(x);
+    }
+    
+    int low = 0, high = n - 1;
+    while(low < high) {
+        if(a[low] == 0 && a[high] == 1) {
+            low++;
+            high--;
+        }        
+        else if(a[low] == 0 && a[high] == 0)
+            low++;
+        else if(a[low] == 1 && a[high] == 1)
+            high--;
+        else {
+            swap(a[low], a[high]);
+            low++;
+            high--;
+        }
+    }
+    
+    cout<<"The sorted array is as follows: "<<endl;
+    for(int i = 0; i < n; i++)
+        cout<<a[i]<<" ";
+    cout<<endl;
+}
 
 int main() {
 
@@ -159,7 +264,10 @@ int main() {
 //pairSumToX();
 //selectionSort();
 //bubbleSort();
-insertionSort();
+//insertionSort();
+//reverseArray();
+//arrayDuplicate();
+sortBinaryArray();
 
 return 0;
 }
