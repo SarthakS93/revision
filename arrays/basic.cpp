@@ -133,15 +133,14 @@ void insertionSort() {
         a.push_back(x);
     }
 
-    int i = 1;
-    while(i < n) {
-        int j = i - 1;
+    int i = 0;
+    while(i < n - 1) {
+        int j = i + 1;
         int key = a[j];
-        while(j > 0 && key < a[j]) {
-            swap(a[j], a[j + 1]);
+        while(j > 0 && key < a[j - 1]) {
+            swap(a[j], a[j - 1]);
             j--;
         }
-        a[i + 1] = key;
         i++;
     }
     
@@ -264,10 +263,10 @@ int main() {
 //pairSumToX();
 //selectionSort();
 //bubbleSort();
-//insertionSort();
+insertionSort();
 //reverseArray();
 //arrayDuplicate();
-sortBinaryArray();
+//sortBinaryArray();
 
 return 0;
 }
