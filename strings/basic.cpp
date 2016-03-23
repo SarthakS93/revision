@@ -151,13 +151,63 @@ void reverseSentenceWords() {
     
 }
 
+
+void printSubstring(char* s, int start, int end) {
+    char op[10];
+    int i;
+    for(i = 0; i < (end - start + 1); i++) {
+        op[i] = s[start + i];
+    }
+    op[i] = '\0';
+    cout<<op<<endl;    
+}
+
+
+void printAllSubstrings() {
+    cout<<"Enter the string: "<<endl;
+    char s[10];
+    cin>>s;
+    int l = length(s);
+    for(int i = 0; i < l; i++) {
+        int n = l - i; 
+        for(int j = 0; j < n; j++) {
+            printSubstring(s, j, j + i);
+        }        
+    }
+}
+
+
+void removeDuplicates() {
+    cout<<"Enter the string: "<<endl;
+    char s[10];
+    cin>>s;
+    int i = 0, j;
+    while(s[i] != '\0') {
+        if(s[i] == s[i + 1]) {
+            j = i;
+            while(s[j] != '\0') {
+                s[j] = s[j + 1];
+                j++;
+            }
+        }
+        else {
+            i++;
+        }            
+    }
+    cout<<"Output string: "<<s<<endl;
+}
+
+
 int main() {
 
 //checkIfStringsPermutation();
 //toLower();
 //rotateString();
 //splReverse();
-reverseSentenceWords();
+//reverseSentenceWords();
+//printAllSubstrings();
+removeDuplicates();
+
 
 return 0;
 }

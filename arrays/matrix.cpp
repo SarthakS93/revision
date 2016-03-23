@@ -64,10 +64,38 @@ void spiralPrint() {
 
 }
 
+int minCostPathHelper(int a[][5], int n, int m) {
+    if(n < 0 || m < 0)
+        return INT_MAX;
+    if(n == 0 && m == 0)
+        return a[n][m];
+    int ans = (a[n][m] + min(minCostPathHelper(a[n - 1][m - 1]), 
+     min(minCostPathHelper(a[n - 1][m]), minCostPathHelper(a[n][m - 1]))));
+    cout<<"Step Ans - "<<ans<<endl;
+    return ans;
+}
+void minCostPath() {
+    int n, m;
+    cout<<"Enter the 2D matrix dimensions: "<<endl;
+    cin>>n>>m;
+    cout<<"Enter the elements of the matrix: "<<endl;
+    int a[5][5];
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; j++) {
+            cin>>a[i][j];
+        }
+    }
+
+    int x, y;
+    cout<<"Enter the coordinates of block you want to reach: "<<endl;
+    cin>>x>>y;
+    cout<<"Output: "<<minCostPathHelper(a, x, y)<<endl;
+}
 
 int main() {
 
-spiralPrint();
+//spiralPrint();
+minCostPath();
 
 return 0;
 }
