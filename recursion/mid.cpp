@@ -21,10 +21,25 @@ int subsequences(char ip[], char op[][20], int index) {
     return 2 * smallOpSize;
 }
 
+bool palindrome(char* s, int & a, int index) {
+    if(s[index] == '\0')
+        return true;
+    bool temp = palindrome(s, a, index + 1);
+    if(!temp)
+        return temp;
+    if(s[a] == s[index]) {
+        a++;
+        return true;
+    }
+    else
+        return false;
+}
+
+
 
 int main() {
     
-    char ip[20], op[100][20];
+   /* char ip[20], op[100][20];
     cout<<"Enter the string: "<<endl;
     cin>>ip;
     int size = subsequences(ip, op, 0);
@@ -32,7 +47,10 @@ int main() {
     cout<<"The output is as follows: "<<endl;
     for(int i = 0; i < size; i++) {
         cout<<op[i]<<endl;
-    }
+    }*/
+    char s[10] = "nitin";
+    int a = 0, index = 0;
+    cout<<palindrome(s, a, index)<<endl;
 
 return 0;
 }

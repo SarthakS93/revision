@@ -40,6 +40,17 @@ class LinkedList {
     }
 
     private:
+
+    void printReverseHelper(Node* head) {
+        if(head == NULL) 
+            return;
+        printReverseHelper(head->next);
+        cout<<head->data<<" ";
+    }
+
+
+
+
     int findElementRecursivelyHelper(Node* head, int data) {
         if(head == NULL)
             return -1;
@@ -71,6 +82,23 @@ class LinkedList {
         }
         head = prev;
         return head;
+    }
+
+    bool palindromeHelper(Node* head, Node* & index) {
+        if(head == NULL)
+            return true;
+        bool temp = palindromeHelper(head->next, index);
+        if(!temp) {
+            return temp;
+        }
+
+        if(head->data == index->data) {
+            index = index->next;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public:
@@ -164,6 +192,72 @@ class LinkedList {
         cout<<n<<"th node from end is: "<<slow->data<<endl;      
     }
 
+    void bubbleSort() {
+        Node *current, *prev;
+        int len = lengthHelper(head);
+        for(int i = 0; i < len; i++) {
+            current = head;
+            prev = NULL;
+            while(current != NULL && current->next != NULL) {
+                if(current->data > current->next->data) {
+                    if(prev == NULL) {
+                        Node* nextNode = current->next;
+                        current->next = nextNode->next;
+                        nextNode->next = current;
+                        head = nextNode;
+                        prev = nextNode;                    
+                    }
+                    else {
+                        Node* nextNode = current->next;
+                        current->next = nextNode->next;
+                        nextNode->next = current;
+                        prev->next = nextNode;                    
+                        prev = nextNode;                    
+                    }
+
+                }
+                else {
+                    prev = current;
+                    current = current->next;
+                }
+            }
+        }
+        cout<<"Sorted!!"<<endl;
+    }
+
+    void palindrome() {
+        Node* index = head;
+        bool temp =  palindromeHelper(head, index);
+        if(temp) {
+            cout<<"Yes its a palindrome!!"<<endl;
+            return;
+        }
+        else {
+            cout<<"Its not a palindrome!!"<<endl;
+            return;
+        }
+    }
+
+    void removeDuplicatesSorted() {
+        Node *p = head;
+        while(p != NULL && p->next != NULL) {
+            if(p->data == p->next->data) {
+                Node* temp = p->next;
+                p->next = temp->next;
+                delete temp;
+            }
+            else {
+                p = p->next;
+            }
+        }
+    }
+
+    void printReverse() {
+        cout<<"Reverse Print is as follows: "<<endl;
+        printReverseHelper(head);
+        cout<<""<<endl;
+    }
+
 };
 
     void takeInput(LinkedList & a) {
@@ -188,6 +282,12 @@ int main() {
     a.reverseIterative();
     a.print();
     a.nthNodeFromEnd(3);
+    a.bubbleSort();
+    a.print();
+    a.palindrome();
+    a.removeDuplicatesSorted();
+    a.print();
+    a.removeDuplicatesSorted();
 
 return 0;
 }
