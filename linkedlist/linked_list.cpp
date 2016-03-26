@@ -101,6 +101,46 @@ class LinkedList {
         }
     }
 
+    Node* kreverseHelper(Node* head, int k) {
+        if(head == NULL || head->next == NULL)
+            return head;
+
+        Node *current = head, *prev = NULL, *nextNode;
+        int ctr = 0;
+
+        while(current != NULL && ctr < k) {
+            prev = current;
+            current = current->next;
+            ctr++;
+        }
+        prev->next = NULL;
+        Node* p = current;
+
+        current = head;
+        prev = NULL;
+
+        while(current != NULL) {
+            nextNode = current->next;
+            current->next = prev;
+            prev = current;
+            current = nextNode;
+        }
+        head->next = kreverseHelper(p, k);
+        head = prev;
+
+        return head;
+    }
+
+    Node* reverseRecursiveHelper(Node* head) {
+        if(head == NULL || head->next == NULL)
+            return head;
+
+        Node* smallerHead = reverseRecursiveHelper(head->next);
+        head->next->next = head;
+        head->next = NULL;
+        return smallerHead;
+    }
+
     public:
 
     int findElement(int data) {
@@ -252,6 +292,64 @@ class LinkedList {
         }
     }
 
+    void kreverse() {
+        int k;
+        cout<<"Enter k: "<<endl;
+        cin>>k;
+        head = kreverseHelper(head, k);
+    }
+
+    void appendLastNInFront() {
+        Node *fast = head, *slow = head, *prev = NULL;
+        int n, i = 1;
+        cout<<"Enter n: "<<endl;
+        cin>>n;
+        while(i < n) {
+            i++;
+            fast = fast->next;
+        }
+
+        while(fast!= NULL) {
+            prev = slow;
+            slow = slow->next;
+            fast = fast->next;
+        }
+
+        prev->next = NULL;
+        Node* temp = slow;
+        while(temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = head;
+        head = slow;
+
+        cout<<"Appended the last "<<n<<" nodes in front"<<endl;
+    }
+
+    /*void removeDuplicatesUnsorted() {
+        Node* current = head;
+        Node* prev = NULL;
+        unordered_map<int, bool> mymap;
+        while(current != NULL) {
+            if(mymap.count(current->data) != 1) {
+                mymap[current->data] = true;
+                prev = current;
+                current = current->next;
+            }
+            else {
+                Node* nextNode = current->next;
+                prev->next = nextNode;
+                delete current;
+                current = nextNode;
+            }
+        }
+    }*/
+
+    void reverseRecursive() {
+        head = reverseRecursiveHelper(head);
+        cout<<"Reversed!!"<<endl;
+    }
+
     void printReverse() {
         cout<<"Reverse Print is as follows: "<<endl;
         printReverseHelper(head);
@@ -276,18 +374,24 @@ int main() {
     LinkedList a;
     takeInput(a);
     a.print();
-    cout<<"The length is: "<<a.length()<<endl;
-    cout<<"The position of element is: "<<a.findElementRecursively()<<endl;
-    a.printMidNodeData();
-    a.reverseIterative();
+    //cout<<"The length is: "<<a.length()<<endl;
+    //cout<<"The position of element is: "<<a.findElementRecursively()<<endl;
+    //a.printMidNodeData();
+    //a.reverseIterative();
+    //a.print();
+    //a.nthNodeFromEnd(3);
+    //a.bubbleSort();
+    //a.print();
+    //a.palindrome();
+    //a.removeDuplicatesSorted();
+    //a.print();
+    a.reverseRecursive();
+    //a.removeDuplicatesUnsorted();
     a.print();
-    a.nthNodeFromEnd(3);
-    a.bubbleSort();
+    a.kreverse();
     a.print();
-    a.palindrome();
-    a.removeDuplicatesSorted();
+    a.appendLastNInFront();
     a.print();
-    a.removeDuplicatesSorted();
 
 return 0;
 }
