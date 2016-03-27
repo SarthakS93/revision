@@ -326,7 +326,7 @@ class LinkedList {
         cout<<"Appended the last "<<n<<" nodes in front"<<endl;
     }
 
-    /*void removeDuplicatesUnsorted() {
+    void removeDuplicatesUnsorted() {
         Node* current = head;
         Node* prev = NULL;
         unordered_map<int, bool> mymap;
@@ -343,7 +343,7 @@ class LinkedList {
                 current = nextNode;
             }
         }
-    }*/
+    }
 
     void reverseRecursive() {
         head = reverseRecursiveHelper(head);
@@ -386,12 +386,12 @@ int main() {
     //a.removeDuplicatesSorted();
     //a.print();
     a.reverseRecursive();
-    //a.removeDuplicatesUnsorted();
+    a.removeDuplicatesUnsorted();
     a.print();
-    a.kreverse();
-    a.print();
-    a.appendLastNInFront();
-    a.print();
+    //a.kreverse();
+    //a.print();
+    //a.appendLastNInFront();
+    //a.print();
 
 return 0;
 }

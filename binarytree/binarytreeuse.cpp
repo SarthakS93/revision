@@ -173,9 +173,31 @@ void zigzagTraversal(BinaryTreeNode<int>* root) {
     pendingNodes.enqueue(root);
     pendingNodes.enqueue(NULL);
     bool flag = true;
-    
+    stack_using_node<BinaryTreeNode<int>*> s;
     while(!pendingNodes.is_empty()) {
-        BinaryTreeNode<int>* currentNode
+        BinaryTreeNode<int>* currentNode = pendingNodes.dequeue();
+        if(!currentNode) {
+            if(pendingNodes.is_empty()) {
+                return;
+            }
+            else {
+                if(!flag) {
+                    while(!s.isEmpty()) {
+                        BinaryTreeNode<int>* temp = s.pop();
+                        cout<<"--"<<temp->data;
+                    }
+                    pendingNodes.enqueue(NULL);
+                    flag = true;
+                }
+                else {
+                    cout<<endl;
+                    flag = false;
+                }
+            }
+        }
+        else {
+            if()
+        }
     }
 
 

@@ -48,9 +48,17 @@ int main() {
     for(int i = 0; i < size; i++) {
         cout<<op[i]<<endl;
     }*/
-    char s[10] = "nitin";
+    /*char s[10] = "nitin";
     int a = 0, index = 0;
-    cout<<palindrome(s, a, index)<<endl;
+    cout<<palindrome(s, a, index)<<endl;*/
+
+    unordered_map<int, int> a;
+    a[1] = 10;
+    a[2] = 20;
+    unordered_map<int, int>::iterator it;
+    for(it = a.begin(); it != a.end(); it++)
+        cout<<it->first<<endl;
+
 
 return 0;
 }
