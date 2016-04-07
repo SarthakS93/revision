@@ -1,6 +1,14 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+int length(char* s) {
+    int i = 0;
+    while(s[i] != '\0') {
+        i++;
+    }
+    return i;
+}
+
 int subsequences(char ip[], char op[][20], int index) {
     if(ip[index] == '\0') {
         op[0][0] = '\0';
@@ -35,7 +43,27 @@ bool palindrome(char* s, int & a, int index) {
         return false;
 }
 
+void anagramSubstringSearch(char* s, char* t) {
+    int n = length(s);
+    int m = length(t);
+    int z = 0;
 
+    int freq[300] = {0};
+    for(int i = 0; i < m; i++) {
+        freq[t[i]]++;
+        freq[s[i]]--;
+    }
+    for(int i = 0; i < 300; i++) {
+        if(freq[i] != 0)
+            z++;
+    }
+
+
+
+    
+    
+
+}
 
 int main() {
     
@@ -52,12 +80,8 @@ int main() {
     int a = 0, index = 0;
     cout<<palindrome(s, a, index)<<endl;*/
 
-    unordered_map<int, int> a;
-    a[1] = 10;
-    a[2] = 20;
-    unordered_map<int, int>::iterator it;
-    for(it = a.begin(); it != a.end(); it++)
-        cout<<it->first<<endl;
+
+
 
 
 return 0;
